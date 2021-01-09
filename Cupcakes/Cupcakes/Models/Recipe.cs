@@ -1,4 +1,5 @@
 ﻿using System.Collections.ObjectModel;
+using SQLite;
 
 namespace Cupcakes.Models
 {
@@ -12,6 +13,7 @@ namespace Cupcakes.Models
 
         public string Description { get; set; }
 
+        [PrimaryKey, AutoIncrement]
         public int Id { get; set; }
 
         public int MakesQuantity { get; set; }

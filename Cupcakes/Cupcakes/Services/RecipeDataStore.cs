@@ -1,6 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
+using System.IO;
 using System.Threading.Tasks;
 using Cupcakes.Models;
 
@@ -8,49 +8,51 @@ namespace Cupcakes.Services
 {
     public class RecipeDataStore : IDataStore<Recipe>
     {
-        readonly IList<Recipe> recipes;
+        //readonly IList<Recipe> recipes;
+        private readonly SQLite.SQLiteAsyncConnection connection;
 
         public RecipeDataStore()
         {
-            recipes = new List<Recipe>
-            {
-                new Recipe { Name = "Chocolate Reindeer", Description = "A Festive treat" },
-                new Recipe { Name = "Oreo", Description = "" }
-            };
+            //recipes = new List<Recipe>
+            //{
+            //    new Recipe { Name = "Chocolate Reindeer", Description = "A Festive treat" },
+            //    new Recipe { Name = "Oreo", Description = "" }
+            //};
+
+            var databasePath = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments), "Cupcakes.db");
+            connection = new SQLite.SQLiteAsyncConnection(databasePath);
+
+            Task.Run(async () => await InitialiseAsync()).GetAwaiter().GetResult();
         }
 
-        public Task<bool> AddItemAsync(Recipe item)
+        public Task InitialiseAsync()
         {
-            recipes.Add(item);
-
-            return Task.FromResult(true);
+            return this.connection.CreateTableAsync<Recipe>();
         }
 
-        public Task<bool> DeleteItemAsync(int id)
+        public Task<int> AddItemAsync(Recipe item)
         {
-            var oldItem = recipes.Where((Recipe arg) => arg.Id == id).FirstOrDefault();
-            recipes.Remove(oldItem);
+            return this.connection.InsertAsync(item);
+        }
 
-            return Task.FromResult(true);
+        public Task<int> DeleteItemAsync(int id)
+        {
+            return this.connection.DeleteAsync<Recipe>(id);
         }
 
         public Task<Recipe> GetItemAsync(int id)
         {
-            return Task.FromResult(recipes.FirstOrDefault(s => s.Id == id));
+            return this.connection.FindAsync<Recipe>(id);
         }
 
-        public async Task<IEnumerable<Recipe>> GetItemsAsync(bool forceRefresh = false)
+        public Task<List<Recipe>> GetItemsAsync(bool forceRefresh = false)
         {
-            return await Task.FromResult(recipes);
+            return this.connection.Table<Recipe>().ToListAsync();
         }
 
-        public Task<bool> UpdateItemAsync(Recipe item)
+        public Task<int> UpdateItemAsync(Recipe item)
         {
-            var oldItem = recipes.FirstOrDefault(arg => arg.Id == item.Id);
-            recipes.Remove(oldItem);
-            recipes.Add(item);
-
-            return Task.FromResult(true);
+            return this.connection.UpdateAsync(item);
         }
     }
 }

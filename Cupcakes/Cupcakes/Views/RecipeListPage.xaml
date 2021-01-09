@@ -45,7 +45,7 @@
                                VerticalTextAlignment="Center"
                                Style="{DynamicResource ListItemTextStyle}" 
                                FontSize="16" />
-                        <Label Text="{Binding Description}"
+                        <Label Text="{Binding MakesQuantity}"
                                Grid.Row="1"
                                Grid.Column="1"
                                LineBreakMode="NoWrap"
