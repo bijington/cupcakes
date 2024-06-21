@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:models="clr-namespace:Bijington.Cupcakes.Models"
+             xmlns:viewModels="clr-namespace:Bijington.Cupcakes.ViewModels"
+             x:Class="Bijington.Cupcakes.Pages.ProductsPage"
+             x:DataType="viewModels:ProductsPageViewModel">
+    <ContentPage.ToolbarItems>
+        <ToolbarItem 
+            Text="Add item"
+            IconImageSource="add.png"
+            Command="{Binding AddProductCommand}"/>
+    </ContentPage.ToolbarItems>
+    
+    <Grid>
+        <CollectionView ItemsSource="{Binding Path=Products}"
+                        Margin="10">
+            
+            <CollectionView.ItemsLayout>
+                <GridItemsLayout VerticalItemSpacing="10" Orientation="Vertical" />
+            </CollectionView.ItemsLayout>
+            
+            <CollectionView.ItemTemplate>
+                <DataTemplate x:DataType="models:Product">
+                    <Border StrokeShape="RoundRectangle 25">
+                        <Grid ColumnDefinitions="*,5*">
+                            <Image Source="{Binding Path=ImagePath}" />
+                            
+                            <Label Text="{Binding Path=Name}"
+                                   Grid.Column="1"
+                                   FontSize="30"
+                                   Padding="30,0,0,0" />
+                        </Grid>
+                    </Border>
+                </DataTemplate>
+            </CollectionView.ItemTemplate>
+        </CollectionView>
+    </Grid>
+</ContentPage>
