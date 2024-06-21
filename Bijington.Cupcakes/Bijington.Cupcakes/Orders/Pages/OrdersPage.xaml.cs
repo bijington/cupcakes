@@ -1,6 +1,6 @@
-using Bijington.Cupcakes.ViewModels;
+using Bijington.Cupcakes.Orders.ViewModels;
 
-namespace Bijington.Cupcakes.Pages;
+namespace Bijington.Cupcakes.Orders.Pages;
 
 public partial class OrdersPage : ContentPage
 {

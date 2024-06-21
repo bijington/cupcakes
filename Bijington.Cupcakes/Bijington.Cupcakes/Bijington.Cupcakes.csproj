@@ -57,10 +57,40 @@
     </ItemGroup>
 
     <ItemGroup>
+        <PackageReference Include="CommunityToolkit.Maui" Version="9.0.1" />
         <PackageReference Include="CommunityToolkit.Mvvm" Version="8.2.2" />
         <PackageReference Include="Microsoft.Maui.Controls" Version="$(MauiVersion)"/>
         <PackageReference Include="Microsoft.Maui.Controls.Compatibility" Version="$(MauiVersion)"/>
         <PackageReference Include="Microsoft.Extensions.Logging.Debug" Version="8.0.0"/>
+    </ItemGroup>
+
+    <ItemGroup>
+      <MauiXaml Update="Products\Pages\AddProductPage.xaml">
+        <SubType>Designer</SubType>
+      </MauiXaml>
+      <MauiXaml Update="Products\Pages\ProductsPage.xaml">
+        <SubType>Designer</SubType>
+      </MauiXaml>
+    </ItemGroup>
+
+    <ItemGroup>
+      <Compile Update="Products\Pages\AddProductPage.xaml.cs">
+        <DependentUpon>AddProductPage.xaml</DependentUpon>
+        <SubType>Code</SubType>
+      </Compile>
+      <Compile Update="Products\Pages\ProductsPage.xaml.cs">
+        <DependentUpon>ProductsPage.xaml</DependentUpon>
+        <SubType>Code</SubType>
+      </Compile>
+    </ItemGroup>
+
+    <ItemGroup>
+      <AdditionalFiles Include="Orders\Pages\AddOrderPage.xaml" />
+      <AdditionalFiles Include="Orders\Pages\OrdersPage.xaml" />
+    </ItemGroup>
+
+    <ItemGroup>
+      <Folder Include="Settings\" />
     </ItemGroup>
 
 </Project>

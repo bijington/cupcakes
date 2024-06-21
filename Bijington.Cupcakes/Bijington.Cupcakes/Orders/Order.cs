@@ -1,4 +1,8 @@
-namespace Bijington.Cupcakes.Models;
+using System;
+using System.Collections.Generic;
+using Bijington.Cupcakes.Products;
+
+namespace Bijington.Cupcakes.Orders;
 
 public class Order
 {

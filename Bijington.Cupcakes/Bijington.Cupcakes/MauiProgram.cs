@@ -1,6 +1,11 @@
-﻿using Bijington.Cupcakes.Pages;
-using Bijington.Cupcakes.ViewModels;
+﻿using Bijington.Cupcakes.Orders;
+using Bijington.Cupcakes.Products;
+using CommunityToolkit.Maui;
+using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
+using Microsoft.Maui.Controls.Hosting;
+using Microsoft.Maui.Hosting;
+using Microsoft.Maui.Media;
 
 namespace Bijington.Cupcakes;
 
@@ -11,21 +16,15 @@ public static class MauiProgram
         var builder = MauiApp.CreateBuilder();
         builder
             .UseMauiApp<App>()
+            .UseMauiCommunityToolkit()
             .ConfigureFonts(fonts =>
             {
                 fonts.AddFont("OpenSans-Regular.ttf", "OpenSansRegular");
                 fonts.AddFont("OpenSans-Semibold.ttf", "OpenSansSemibold");
             });
 
-        builder.Services.AddTransient<ProductsPage>();
-        builder.Services.AddTransient<ProductsPageViewModel>();
-        
-        builder.Services.AddTransient<AddProductPage>();
-        builder.Services.AddTransient<AddProductViewModel>();
-        Routing.RegisterRoute(nameof(AddProductPage), typeof(AddProductPage));
-        
-        builder.Services.AddTransient<OrdersPage>();
-        builder.Services.AddTransient<OrdersPageViewModel>();
+        builder.Services.AddOrders();
+        builder.Services.AddProducts();
 
         builder.Services.AddSingleton(MediaPicker.Default);
 

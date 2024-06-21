@@ -3,20 +3,19 @@
     x:Class="Bijington.Cupcakes.AppShell"
     xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-    xmlns:pages="clr-namespace:Bijington.Cupcakes.Pages"
-    Shell.FlyoutBehavior="Disabled"
+    xmlns:orderPages="clr-namespace:Bijington.Cupcakes.Orders.Pages"
+    xmlns:productPages="clr-namespace:Bijington.Cupcakes.Products.Pages"
+    FlyoutBehavior="Disabled"
     Title="Bijington.Cupcakes">
 
     <TabBar>
         <ShellContent
             Title="Products"
-            ContentTemplate="{DataTemplate pages:ProductsPage}"
-            Route="Products" />
+            ContentTemplate="{DataTemplate productPages:ProductsPage}" />
         
         <ShellContent
             Title="Orders"
-            ContentTemplate="{DataTemplate pages:OrdersPage}"
-            Route="Orders" />
+            ContentTemplate="{DataTemplate orderPages:OrdersPage}" />
     </TabBar>
 
 </Shell>

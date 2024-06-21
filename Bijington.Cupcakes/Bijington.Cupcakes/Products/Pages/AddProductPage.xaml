@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:viewModels="clr-namespace:Bijington.Cupcakes.Products.ViewModels"
+             x:Class="Bijington.Cupcakes.Products.Pages.AddProductPage"
+             Shell.PresentationMode="ModalAnimated"
+             x:DataType="viewModels:AddProductPageViewModel">
+    
+    <VerticalStackLayout Margin="20">
+        <Label Text="Name" />
+        <Entry Text="{Binding ProductName}" />
+        
+        <Label Text="Priced" />
+        <Entry Text="{Binding Price}" Keyboard="Numeric" />
+        
+        <Label Text="Image" />
+        <Image Source="{Binding ImagePath}"
+               MinimumHeightRequest="200"
+               MinimumWidthRequest="200">
+            <Image.GestureRecognizers>
+                <TapGestureRecognizer Command="{Binding TakePhotoCommand}"></TapGestureRecognizer>
+            </Image.GestureRecognizers>
+        </Image>
+        <Button Text="Save" Command="{Binding SaveCommand}" />
+    </VerticalStackLayout>
+</ContentPage>

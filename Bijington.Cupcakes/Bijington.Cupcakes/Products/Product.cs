@@ -1,4 +1,4 @@
-namespace Bijington.Cupcakes.Models;
+namespace Bijington.Cupcakes.Products;
 
 public class Product
 {
