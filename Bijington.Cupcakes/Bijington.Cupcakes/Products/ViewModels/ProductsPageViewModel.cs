@@ -34,6 +34,11 @@ public partial class ProductsPageViewModel : ObservableObject
 
         foreach (var product in products)
         {
+            if (Products.Any(p => p.Id == product.Id))
+            {
+                continue;
+            }
+            
             Products.Add(product);
         }
     }

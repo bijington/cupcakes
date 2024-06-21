@@ -1,5 +1,6 @@
 ﻿using Bijington.Cupcakes.Orders;
 using Bijington.Cupcakes.Products;
+using Bijington.Cupcakes.Settings;
 using CommunityToolkit.Maui;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
@@ -25,6 +26,7 @@ public static class MauiProgram
 
         builder.Services.AddOrders();
         builder.Services.AddProducts();
+        builder.Services.AddSettings();
 
         builder.Services.AddSingleton(MediaPicker.Default);
 

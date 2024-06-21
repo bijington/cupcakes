@@ -89,8 +89,4 @@
       <AdditionalFiles Include="Orders\Pages\OrdersPage.xaml" />
     </ItemGroup>
 
-    <ItemGroup>
-      <Folder Include="Settings\" />
-    </ItemGroup>
-
 </Project>
