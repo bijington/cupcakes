@@ -17,7 +17,8 @@
         <Label Text="Image" />
         <Image Source="{Binding ImagePath}"
                MinimumHeightRequest="200"
-               MinimumWidthRequest="200">
+               MinimumWidthRequest="200"
+               MaximumHeightRequest="400">
             <Image.GestureRecognizers>
                 <TapGestureRecognizer Command="{Binding TakePhotoCommand}"></TapGestureRecognizer>
             </Image.GestureRecognizers>

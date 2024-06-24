@@ -26,7 +26,7 @@
                     <Border StrokeShape="RoundRectangle 25">
                         <Grid ColumnDefinitions="*,5*">
                             <Image Source="{Binding Path=ImagePath}" 
-                                   MinimumHeightRequest="50"/>
+                                   HeightRequest="100" />
                             
                             <Label Text="{Binding Path=Name}"
                                    Grid.Column="1"

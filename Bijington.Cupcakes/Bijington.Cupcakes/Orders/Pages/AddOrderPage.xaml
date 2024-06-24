@@ -2,9 +2,49 @@
 
 <ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:viewModels="clr-namespace:Bijington.Cupcakes.Orders.ViewModels"
              x:Class="Bijington.Cupcakes.Orders.Pages.AddOrderPage"
-             Shell.PresentationMode="ModalAnimated">
-    <VerticalStackLayout>
+             Shell.PresentationMode="ModalAnimated"
+             x:DataType="viewModels:AddOrderPageViewModel">
+    
+    <Grid Margin="20"
+          RowDefinitions="Auto,Auto,Auto,*,Auto,Auto,Auto">
+        <Label Text="Customer Name" />
+        <Entry Text="{Binding CustomerName}"
+               Grid.Row="1"/>
         
-    </VerticalStackLayout>
+        <Label Text="Items"
+               Grid.Row="2"/>
+        <VerticalStackLayout BindableLayout.ItemsSource="{Binding Items}"
+                             Grid.Row="3">
+            <BindableLayout.ItemTemplate>
+                <DataTemplate x:DataType="viewModels:OrderItemViewModel">
+                    <HorizontalStackLayout>
+                        <Picker ItemsSource="{Binding AvailableProducts, Source={RelativeSource AncestorType={x:Type viewModels:AddOrderPageViewModel}}}"
+                                SelectedItem="{Binding Product}"
+                                ItemDisplayBinding="{Binding Name}"/>
+                        <Entry Text="{Binding Quantity}"/>
+                        <Label Text="{Binding TotalPrice}" />
+                    </HorizontalStackLayout>
+                </DataTemplate>
+            </BindableLayout.ItemTemplate>
+        </VerticalStackLayout>
+        <Button Text="Add item" Grid.Row="4" Command="{Binding AddItemCommand}"/>
+        
+        <HorizontalStackLayout Grid.Row="5" Spacing="10">
+            <Label Text="Total" />
+            <Label Text="{Binding Currency}" />
+            <Label Text="{Binding TotalPrice, StringFormat='{0:F2}'}" />    
+        </HorizontalStackLayout>
+        
+        <!-- <Label.Text> -->
+        <!--     <MultiBinding StringFormat="{}{0} {1}"> -->
+        <!--         <Binding Path="Currency" /> -->
+        <!--         <Binding Path="TotalPrice" /> -->
+        <!--     </MultiBinding> -->
+        <!-- </Label.Text> -->
+        <Button Text="Save" Command="{Binding SaveCommand}" 
+                Grid.Row="6"/>
+    </Grid>
+    
 </ContentPage>
