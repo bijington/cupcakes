@@ -4,6 +4,7 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="Bijington.Cupcakes.Orders.Pages.OrdersPage"
              xmlns:viewModels="clr-namespace:Bijington.Cupcakes.Orders.ViewModels"
+             xmlns:orders="clr-namespace:Bijington.Cupcakes.Orders"
              x:DataType="viewModels:OrdersPageViewModel">
     <ContentPage.ToolbarItems>
         <ToolbarItem 
@@ -11,4 +12,36 @@
             IconImageSource="add.png"
             Command="{Binding AddOrderCommand}"/>
     </ContentPage.ToolbarItems>
+    
+    <Grid>
+        <CollectionView ItemsSource="{Binding Path=Orders}"
+                        Margin="10">
+            
+            <CollectionView.ItemsLayout>
+                <GridItemsLayout VerticalItemSpacing="10" Orientation="Vertical" />
+            </CollectionView.ItemsLayout>
+            
+            <CollectionView.ItemTemplate>
+                <DataTemplate x:DataType="orders:Order">
+                    <Border StrokeShape="RoundRectangle 25">
+                        <Grid ColumnDefinitions="*,5*"
+                              RowDefinitions="2*,*">
+                            <!-- <Image Source="{Binding Path=ImagePath}"  -->
+                            <!--        HeightRequest="100" /> -->
+                            
+                            <Label Text="{Binding Path=CustomerName}"
+                                   Grid.Column="1"
+                                   FontSize="30"
+                                   Padding="30,0,0,0" />
+                            
+                            <Label Text="{Binding Path=Date}"
+                                   Grid.Column="1"
+                                   Grid.Row="1"
+                                   Padding="30,0,0,0" />
+                        </Grid>
+                    </Border>
+                </DataTemplate>
+            </CollectionView.ItemTemplate>
+        </CollectionView>
+    </Grid>
 </ContentPage>

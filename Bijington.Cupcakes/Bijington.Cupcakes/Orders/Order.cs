@@ -1,14 +1,17 @@
 using System;
 using System.Collections.Generic;
-using Bijington.Cupcakes.Products;
 
 namespace Bijington.Cupcakes.Orders;
 
 public class Order
 {
-    public DateOnly Date { get; set; }
+    public string CustomerName { get; set; }
     
-    public TimeOnly Time { get; set; }
+    public DateTime Date { get; set; }
     
-    public IList<Product> Products { get; set; }
+    public int Id { get; set; }
+    
+    // TODO: Add in TotalPrice here. Explain why breaking normalisation can be a good thing.
+    
+    public IList<ProductOrder> Items { get; set; }
 }

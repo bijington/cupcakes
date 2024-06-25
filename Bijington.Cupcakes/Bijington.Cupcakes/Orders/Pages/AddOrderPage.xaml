@@ -8,15 +8,20 @@
              x:DataType="viewModels:AddOrderPageViewModel">
     
     <Grid Margin="20"
-          RowDefinitions="Auto,Auto,Auto,*,Auto,Auto,Auto">
+          RowDefinitions="Auto,Auto,Auto,Auto,Auto,*,Auto,Auto,Auto">
         <Label Text="Customer Name" />
         <Entry Text="{Binding CustomerName}"
                Grid.Row="1"/>
         
+        <Label Text="Date" 
+               Grid.Row="2" />
+        <DatePicker Date="{Binding OrderDate}" 
+                    Grid.Row="3" />
+        
         <Label Text="Items"
-               Grid.Row="2"/>
+               Grid.Row="4"/>
         <VerticalStackLayout BindableLayout.ItemsSource="{Binding Items}"
-                             Grid.Row="3">
+                             Grid.Row="5">
             <BindableLayout.ItemTemplate>
                 <DataTemplate x:DataType="viewModels:OrderItemViewModel">
                     <HorizontalStackLayout>
@@ -24,27 +29,24 @@
                                 SelectedItem="{Binding Product}"
                                 ItemDisplayBinding="{Binding Name}"/>
                         <Entry Text="{Binding Quantity}"/>
-                        <Label Text="{Binding TotalPrice}" />
+                        <Label Text="{Binding Currency, Source={RelativeSource AncestorType={x:Type viewModels:AddOrderPageViewModel}}}"
+                               VerticalTextAlignment="Center"/>
+                        <Label Text="{Binding TotalPrice}" 
+                               VerticalTextAlignment="Center"/>
                     </HorizontalStackLayout>
                 </DataTemplate>
             </BindableLayout.ItemTemplate>
         </VerticalStackLayout>
-        <Button Text="Add item" Grid.Row="4" Command="{Binding AddItemCommand}"/>
+        <Button Text="Add item" Grid.Row="6" Command="{Binding AddItemCommand}"/>
         
-        <HorizontalStackLayout Grid.Row="5" Spacing="10">
+        <HorizontalStackLayout Grid.Row="7" Spacing="10">
             <Label Text="Total" />
             <Label Text="{Binding Currency}" />
             <Label Text="{Binding TotalPrice, StringFormat='{0:F2}'}" />    
         </HorizontalStackLayout>
-        
-        <!-- <Label.Text> -->
-        <!--     <MultiBinding StringFormat="{}{0} {1}"> -->
-        <!--         <Binding Path="Currency" /> -->
-        <!--         <Binding Path="TotalPrice" /> -->
-        <!--     </MultiBinding> -->
-        <!-- </Label.Text> -->
+
         <Button Text="Save" Command="{Binding SaveCommand}" 
-                Grid.Row="6"/>
+                Grid.Row="8"/>
     </Grid>
     
 </ContentPage>

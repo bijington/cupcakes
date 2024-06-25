@@ -17,4 +17,13 @@ public class OrderRepository : IOrderRepository
     {
         return Task.FromResult<IReadOnlyCollection<Order>>(_orders.ToImmutableList());
     }
+    
+    public Task Save(Order order)
+    {
+        _orders.Add(order);
+        
+        order.Id = _orders.Count;
+
+        return Task.CompletedTask;
+    }
 }
