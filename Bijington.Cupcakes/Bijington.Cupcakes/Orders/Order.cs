@@ -1,11 +1,12 @@
 using System;
 using System.Collections.Generic;
+using Bijington.Cupcakes.Customers;
 
 namespace Bijington.Cupcakes.Orders;
 
 public class Order
 {
-    public string CustomerName { get; set; }
+    public Customer Customer { get; set; }
     
     public DateTime Date { get; set; }
     

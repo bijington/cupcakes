@@ -9,9 +9,11 @@
     
     <Grid Margin="20"
           RowDefinitions="Auto,Auto,Auto,Auto,Auto,*,Auto,Auto,Auto">
-        <Label Text="Customer Name" />
-        <Entry Text="{Binding CustomerName}"
-               Grid.Row="1"/>
+        <Label Text="Customer" />
+        <Picker SelectedItem="{Binding Customer}"
+                ItemsSource="{Binding AvailableCustomers}"
+                ItemDisplayBinding="{Binding Name}"
+                Grid.Row="1"/>
         
         <Label Text="Date" 
                Grid.Row="2" />

@@ -29,7 +29,7 @@
                             <!-- <Image Source="{Binding Path=ImagePath}"  -->
                             <!--        HeightRequest="100" /> -->
                             
-                            <Label Text="{Binding Path=CustomerName}"
+                            <Label Text="{Binding Path=Customer.Name}"
                                    Grid.Column="1"
                                    FontSize="30"
                                    Padding="30,0,0,0" />

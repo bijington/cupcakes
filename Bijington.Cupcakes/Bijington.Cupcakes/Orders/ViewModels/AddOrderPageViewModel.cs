@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Linq;
 using System.Threading.Tasks;
+using Bijington.Cupcakes.Customers;
 using Bijington.Cupcakes.Products;
 using Bijington.Cupcakes.Settings;
 using CommunityToolkit.Mvvm.ComponentModel;
@@ -13,15 +14,18 @@ namespace Bijington.Cupcakes.Orders.ViewModels;
 
 public partial class AddOrderPageViewModel : ObservableObject, IQueryAttributable
 {
+    private readonly ICustomerRepository _customerRepository;
     private readonly IProductRepository _productRepository;
     private readonly ISettingsRepository _settingsRepository;
     private readonly IOrderRepository _orderRepository;
 
     public AddOrderPageViewModel(
+        ICustomerRepository customerRepository,
         IProductRepository productRepository,
         ISettingsRepository settingsRepository,
         IOrderRepository orderRepository)
     {
+        _customerRepository = customerRepository;
         _productRepository = productRepository;
         _settingsRepository = settingsRepository;
         _orderRepository = orderRepository;
@@ -31,7 +35,7 @@ public partial class AddOrderPageViewModel : ObservableObject, IQueryAttributabl
     private string _currency;
 
     [ObservableProperty] 
-    private string _customerName;
+    private Customer _customer;
     
     [ObservableProperty]
     private decimal _totalPrice;
@@ -39,6 +43,10 @@ public partial class AddOrderPageViewModel : ObservableObject, IQueryAttributabl
     [ObservableProperty]
     private DateTime _orderDate = DateTime.Today;
 
+    // TODO: Explain why we can use a list here.
+    [ObservableProperty]
+    private IReadOnlyCollection<Customer> _availableCustomers;
+    
     [ObservableProperty]
     private IReadOnlyCollection<Product> _availableProducts;
     
@@ -55,7 +63,7 @@ public partial class AddOrderPageViewModel : ObservableObject, IQueryAttributabl
     {
         var order = new Order
         {
-            CustomerName = CustomerName,
+            Customer = Customer,
             Date = OrderDate,
             Items = Items.Select(i => new ProductOrder { Product = i.Product, Quantity = i.Quantity }).ToList()
         };
@@ -69,5 +77,6 @@ public partial class AddOrderPageViewModel : ObservableObject, IQueryAttributabl
     {
         Currency = _settingsRepository.Currency;
         AvailableProducts = await _productRepository.GetProducts();
+        AvailableCustomers = await _customerRepository.GetCustomers();
     }
 }
