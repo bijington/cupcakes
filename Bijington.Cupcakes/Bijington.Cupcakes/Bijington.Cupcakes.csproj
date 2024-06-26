@@ -47,7 +47,6 @@
 
         <!-- Images -->
         <MauiImage Include="Resources\Images\*"/>
-        <MauiImage Update="Resources\Images\dotnet_bot.png" Resize="True" BaseSize="300,185"/>
 
         <!-- Custom Fonts -->
         <MauiFont Include="Resources\Fonts\*"/>
@@ -65,28 +64,37 @@
     </ItemGroup>
 
     <ItemGroup>
-      <MauiXaml Update="Products\Pages\AddProductPage.xaml">
+      <MauiXaml Update="Customers\Pages\CustomersPage.xaml">
         <SubType>Designer</SubType>
       </MauiXaml>
-      <MauiXaml Update="Products\Pages\ProductsPage.xaml">
+      <MauiXaml Update="Customers\Pages\AddCustomerPage.xaml">
+        <SubType>Designer</SubType>
+      </MauiXaml>
+      <MauiXaml Update="Customers\Pages\CustomersPage.xaml">
+        <SubType>Designer</SubType>
+      </MauiXaml>
+      <MauiXaml Update="Customers\Pages\AddCustomerPage.xaml">
         <SubType>Designer</SubType>
       </MauiXaml>
     </ItemGroup>
 
     <ItemGroup>
-      <Compile Update="Products\Pages\AddProductPage.xaml.cs">
-        <DependentUpon>AddProductPage.xaml</DependentUpon>
+      <Compile Update="Customers\Pages\CustomersPage.xaml.cs">
+        <DependentUpon>OrdersPage.xaml</DependentUpon>
         <SubType>Code</SubType>
       </Compile>
-      <Compile Update="Products\Pages\ProductsPage.xaml.cs">
-        <DependentUpon>ProductsPage.xaml</DependentUpon>
+      <Compile Update="Customers\Pages\OrdersPage.xaml.cs">
+        <DependentUpon>OrdersPage.xaml</DependentUpon>
         <SubType>Code</SubType>
       </Compile>
-    </ItemGroup>
-
-    <ItemGroup>
-      <AdditionalFiles Include="Orders\Pages\AddOrderPage.xaml" />
-      <AdditionalFiles Include="Orders\Pages\OrdersPage.xaml" />
+      <Compile Update="Customers\Pages\AddCustomerPage.xaml.cs">
+        <DependentUpon>AddOrderPage.xaml</DependentUpon>
+        <SubType>Code</SubType>
+      </Compile>
+      <Compile Update="Customers\Pages\AddOrderPage.xaml.cs">
+        <DependentUpon>AddOrderPage.xaml</DependentUpon>
+        <SubType>Code</SubType>
+      </Compile>
     </ItemGroup>
 
 </Project>

@@ -2,11 +2,11 @@
 
 <ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             xmlns:products="clr-namespace:Bijington.Cupcakes.Products"
-             xmlns:viewModels="clr-namespace:Bijington.Cupcakes.Products.ViewModels"
+             x:Class="Bijington.Cupcakes.Customers.Pages.CustomersPage"
+             xmlns:viewModels="clr-namespace:Bijington.Cupcakes.Customers.ViewModels"
+             xmlns:customers="clr-namespace:Bijington.Cupcakes.Customers"
              xmlns:toolkit="http://schemas.microsoft.com/dotnet/2022/maui/toolkit"
-             x:Class="Bijington.Cupcakes.Products.Pages.ProductsPage"
-             x:DataType="viewModels:ProductsPageViewModel">
+             x:DataType="viewModels:CustomersPageViewModel">
     <ContentPage.Resources>
         <toolkit:AppThemeObject 
             x:Key="AddImageSource"
@@ -16,13 +16,13 @@
     
     <ContentPage.ToolbarItems>
         <ToolbarItem 
-            Text="Add"
+            Text="Add item"
             IconImageSource="{toolkit:AppThemeResource AddImageSource}"
-            Command="{Binding AddProductCommand}"/>
+            Command="{Binding AddCustomerCommand}" />
     </ContentPage.ToolbarItems>
-
+    
     <Grid>
-        <CollectionView ItemsSource="{Binding Path=Products}"
+        <CollectionView ItemsSource="{Binding Path=Customers}"
                         Margin="10">
             
             <CollectionView.ItemsLayout>
@@ -30,11 +30,12 @@
             </CollectionView.ItemsLayout>
             
             <CollectionView.ItemTemplate>
-                <DataTemplate x:DataType="products:Product">
+                <DataTemplate x:DataType="customers:Customer">
                     <Border StrokeShape="RoundRectangle 25">
-                        <Grid ColumnDefinitions="*,5*">
-                            <Image Source="{Binding Path=ImagePath}" 
-                                   HeightRequest="100" />
+                        <Grid ColumnDefinitions="*,5*"
+                              RowDefinitions="2*,*">
+                            <!-- <Image Source="{Binding Path=ImagePath}"  -->
+                            <!--        HeightRequest="100" /> -->
                             
                             <Label Text="{Binding Path=Name}"
                                    Grid.Column="1"

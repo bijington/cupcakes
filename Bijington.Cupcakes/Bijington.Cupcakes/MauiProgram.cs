@@ -1,4 +1,5 @@
-﻿using Bijington.Cupcakes.Orders;
+﻿using Bijington.Cupcakes.Customers;
+using Bijington.Cupcakes.Orders;
 using Bijington.Cupcakes.Products;
 using Bijington.Cupcakes.Settings;
 using CommunityToolkit.Maui;
@@ -24,6 +25,7 @@ public static class MauiProgram
                 fonts.AddFont("OpenSans-Semibold.ttf", "OpenSansSemibold");
             });
 
+        builder.Services.AddCustomers();
         builder.Services.AddOrders();
         builder.Services.AddProducts();
         builder.Services.AddSettings();
