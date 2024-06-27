@@ -7,6 +7,7 @@
     xmlns:ordersPages="clr-namespace:Bijington.Cupcakes.Orders.Pages"
     xmlns:productsPages="clr-namespace:Bijington.Cupcakes.Products.Pages"
     xmlns:settingsPages="clr-namespace:Bijington.Cupcakes.Settings.Pages"
+    xmlns:analyticsPages="clr-namespace:Bijington.Cupcakes.Analytics.Pages"
     FlyoutBehavior="Disabled"
     Title="Bijington.Cupcakes">
 
@@ -29,7 +30,7 @@
         <ShellContent
             Title="Analytics"
             Icon="analytics.png"
-            ContentTemplate="{DataTemplate ordersPages:OrdersPage}" />
+            ContentTemplate="{DataTemplate analyticsPages:ReportPage}" />
         
         <ShellContent
             Title="Settings"

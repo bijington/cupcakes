@@ -7,10 +7,16 @@
              Shell.PresentationMode="ModalAnimated"
              x:DataType="viewModels:AddCustomerPageViewModel">
     
-    <VerticalStackLayout Margin="20">
+    <VerticalStackLayout Margin="20" Spacing="10">
         <Label Text="Customer Name" />
         <Entry Text="{Binding CustomerName}" />
-
+        
+        <Label Text="Address" />
+        <Editor Text="{Binding Address}" />
+        
+        <Label Text="Phone Number" />
+        <Entry Text="{Binding PhoneNumber}" />
+        
         <Button Text="Save" Command="{Binding SaveCommand}" />
     </VerticalStackLayout>
     

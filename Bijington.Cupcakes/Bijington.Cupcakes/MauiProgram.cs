@@ -3,11 +3,7 @@ using Bijington.Cupcakes.Orders;
 using Bijington.Cupcakes.Products;
 using Bijington.Cupcakes.Settings;
 using CommunityToolkit.Maui;
-using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
-using Microsoft.Maui.Controls.Hosting;
-using Microsoft.Maui.Hosting;
-using Microsoft.Maui.Media;
 
 namespace Bijington.Cupcakes;
 
@@ -30,7 +26,10 @@ public static class MauiProgram
         builder.Services.AddProducts();
         builder.Services.AddSettings();
 
+        builder.Services.AddSingleton(Geocoding.Default);
+        builder.Services.AddSingleton(Map.Default);
         builder.Services.AddSingleton(MediaPicker.Default);
+        builder.Services.AddSingleton(PhoneDialer.Default);
 
 #if DEBUG
         builder.Logging.AddDebug();

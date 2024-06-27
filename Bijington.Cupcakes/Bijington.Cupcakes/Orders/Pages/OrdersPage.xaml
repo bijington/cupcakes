@@ -17,27 +17,39 @@
         <CollectionView ItemsSource="{Binding Path=Orders}"
                         Margin="10">
             
+            <CollectionView.EmptyView>
+                <Label
+                    HorizontalTextAlignment="Center"
+                    Text="No orders yet"
+                    FontAttributes="Italic"
+                    VerticalTextAlignment="Center" />
+            </CollectionView.EmptyView>
+            
             <CollectionView.ItemsLayout>
-                <GridItemsLayout VerticalItemSpacing="10" Orientation="Vertical" />
+                <LinearItemsLayout ItemSpacing="10" Orientation="Vertical" />
             </CollectionView.ItemsLayout>
             
             <CollectionView.ItemTemplate>
                 <DataTemplate x:DataType="orders:Order">
                     <Border StrokeShape="RoundRectangle 25">
-                        <Grid ColumnDefinitions="*,5*"
+                        <Grid ColumnDefinitions="*,*"
                               RowDefinitions="2*,*">
-                            <!-- <Image Source="{Binding Path=ImagePath}"  -->
-                            <!--        HeightRequest="100" /> -->
                             
                             <Label Text="{Binding Path=Customer.Name}"
-                                   Grid.Column="1"
+                                   Grid.ColumnSpan="2"
                                    FontSize="30"
                                    Padding="30,0,0,0" />
                             
                             <Label Text="{Binding Path=Date}"
-                                   Grid.Column="1"
+                                   Grid.Column="0"
                                    Grid.Row="1"
                                    Padding="30,0,0,0" />
+                            
+                            <Label Text="{Binding Path=TotalPrice}"
+                                   Grid.Column="1"
+                                   Grid.Row="1"
+                                   HorizontalTextAlignment="End"
+                                   Padding="0,0,30,0" />
                         </Grid>
                     </Border>
                 </DataTemplate>

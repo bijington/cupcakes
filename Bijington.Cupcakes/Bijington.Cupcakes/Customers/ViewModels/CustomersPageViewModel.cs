@@ -16,7 +16,7 @@ public partial class CustomersPageViewModel : ObservableObject
     public ObservableCollection<Customer> Customers { get; } = [];
     
     [RelayCommand]
-    async Task OnAddCustomer()
+    private async Task OnAddCustomer()
     {
         try
         {
@@ -28,13 +28,21 @@ public partial class CustomersPageViewModel : ObservableObject
             throw;
         }
     }
+
+    [RelayCommand]
+    private async Task OnCustomerSelected(Customer customer)
+    {
+        await Shell.Current.GoToAsync(
+            RouteNames.EditCustomer,
+            new Dictionary<string, object> { ["Customer"] = customer });
+    }
     
     public void OnNavigatedTo()
     {
         Task.Run(async () => await LoadCustomers());
     }
-    
-    async Task LoadCustomers()
+
+    private async Task LoadCustomers()
     {
         var customers = await _customerRepository.GetCustomers();
 

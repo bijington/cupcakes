@@ -76,6 +76,9 @@
       <MauiXaml Update="Customers\Pages\AddCustomerPage.xaml">
         <SubType>Designer</SubType>
       </MauiXaml>
+      <MauiXaml Update="Analytics\Pages\ReportPage.xaml">
+        <SubType>Designer</SubType>
+      </MauiXaml>
     </ItemGroup>
 
     <ItemGroup>
@@ -93,6 +96,10 @@
       </Compile>
       <Compile Update="Customers\Pages\AddOrderPage.xaml.cs">
         <DependentUpon>AddOrderPage.xaml</DependentUpon>
+        <SubType>Code</SubType>
+      </Compile>
+      <Compile Update="Analytics\Pages\ReportPage.xaml.cs">
+        <DependentUpon>ReportPage.xaml</DependentUpon>
         <SubType>Code</SubType>
       </Compile>
     </ItemGroup>

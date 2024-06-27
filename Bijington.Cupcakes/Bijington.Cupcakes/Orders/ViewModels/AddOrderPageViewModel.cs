@@ -1,6 +1,7 @@
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
+using System.ComponentModel;
 using System.Linq;
 using System.Threading.Tasks;
 using Bijington.Cupcakes.Customers;
@@ -53,13 +54,20 @@ public partial class AddOrderPageViewModel : ObservableObject, IQueryAttributabl
     public ObservableCollection<OrderItemViewModel> Items { get; } = [];
 
     [RelayCommand]
-    void OnAddItem()
+    private void OnAddItem()
     {
-        Items.Add(new OrderItemViewModel());
+        var item = new OrderItemViewModel();
+        item.PropertyChanged += ItemOnPropertyChanged;
+        Items.Add(item);
     }
-    
+
+    private void ItemOnPropertyChanged(object? sender, PropertyChangedEventArgs e)
+    {
+        TotalPrice = Items.Select(i => (i.Product?.Price ?? 0M) * i.Quantity).Sum();
+    }
+
     [RelayCommand]
-    async Task OnSave()
+    private async Task OnSave()
     {
         var order = new Order
         {
@@ -69,6 +77,11 @@ public partial class AddOrderPageViewModel : ObservableObject, IQueryAttributabl
         };
 
         await _orderRepository.Save(order);
+
+        foreach (var item in Items)
+        {
+            item.PropertyChanged -= ItemOnPropertyChanged;
+        }
 
         await Shell.Current.GoToAsync("..");
     }

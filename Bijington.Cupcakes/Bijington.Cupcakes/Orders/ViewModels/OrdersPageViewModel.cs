@@ -21,7 +21,7 @@ public partial class OrdersPageViewModel : ObservableObject
     public ObservableCollection<Order> Orders { get; } = [];
     
     [RelayCommand]
-    async Task OnAddOrder()
+    private async Task OnAddOrder()
     {
         try
         {
@@ -38,8 +38,8 @@ public partial class OrdersPageViewModel : ObservableObject
     {
         Task.Run(async () => await LoadOrders());
     }
-    
-    async Task LoadOrders()
+
+    private async Task LoadOrders()
     {
         var orders = await _orderRepository.GetOrders();
 

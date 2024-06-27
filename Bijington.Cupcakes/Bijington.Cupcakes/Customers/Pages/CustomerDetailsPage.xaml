@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:viewModels="clr-namespace:Bijington.Cupcakes.Customers.ViewModels"
+             x:Class="Bijington.Cupcakes.Customers.Pages.CustomerDetailsPage"
+             x:DataType="viewModels:CustomerDetailsPageViewModel">
+    
+    <VerticalStackLayout Margin="20" Spacing="10">
+        <Label Text="Customer Name" />
+        <Label Text="{Binding CustomerName}" />
+        
+        <Label Text="Address" />
+        <Label Text="{Binding Address}" />
+        <Button Text="Show on map" Command="{Binding ShowMapCommand}" />
+
+        <Label Text="Phone Number" />
+        <Label Text="{Binding PhoneNumber}">
+            <Label.GestureRecognizers>
+                <TapGestureRecognizer Command="{Binding DialPhoneNumberCommand}" />
+            </Label.GestureRecognizers>
+        </Label>
+    </VerticalStackLayout>
+    
+</ContentPage>

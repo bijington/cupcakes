@@ -26,25 +26,28 @@
                              Grid.Row="5">
             <BindableLayout.ItemTemplate>
                 <DataTemplate x:DataType="viewModels:OrderItemViewModel">
-                    <HorizontalStackLayout>
+                    <Grid ColumnDefinitions="2*,*,Auto,*">
                         <Picker ItemsSource="{Binding AvailableProducts, Source={RelativeSource AncestorType={x:Type viewModels:AddOrderPageViewModel}}}"
                                 SelectedItem="{Binding Product}"
                                 ItemDisplayBinding="{Binding Name}"/>
-                        <Entry Text="{Binding Quantity}"/>
+                        <Entry Text="{Binding Quantity}"
+                               Grid.Column="1" />
                         <Label Text="{Binding Currency, Source={RelativeSource AncestorType={x:Type viewModels:AddOrderPageViewModel}}}"
-                               VerticalTextAlignment="Center"/>
+                               VerticalTextAlignment="Center"
+                               Grid.Column="2" />
                         <Label Text="{Binding TotalPrice}" 
-                               VerticalTextAlignment="Center"/>
-                    </HorizontalStackLayout>
+                               VerticalTextAlignment="Center"
+                               Grid.Column="3" />
+                    </Grid>
                 </DataTemplate>
             </BindableLayout.ItemTemplate>
         </VerticalStackLayout>
         <Button Text="Add item" Grid.Row="6" Command="{Binding AddItemCommand}"/>
         
         <HorizontalStackLayout Grid.Row="7" Spacing="10">
-            <Label Text="Total" />
-            <Label Text="{Binding Currency}" />
-            <Label Text="{Binding TotalPrice, StringFormat='{0:F2}'}" />    
+            <Label Text="Total" FontSize="30" />
+            <Label Text="{Binding Currency}" FontSize="30" />
+            <Label Text="{Binding TotalPrice, StringFormat='{0:F2}'}" FontSize="30" />    
         </HorizontalStackLayout>
 
         <Button Text="Save" Command="{Binding SaveCommand}" 

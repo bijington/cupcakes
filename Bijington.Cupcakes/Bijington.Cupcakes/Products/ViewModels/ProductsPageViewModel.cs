@@ -23,12 +23,12 @@ public partial class ProductsPageViewModel : ObservableObject
     }
 
     [RelayCommand]
-    async Task OnAddProduct()
+    private async Task OnAddProduct()
     {
         await Shell.Current.GoToAsync(RouteNames.AddProduct);
     }
 
-    async Task LoadProducts()
+    private async Task LoadProducts()
     {
         var products = await _productRepository.GetProducts();
 

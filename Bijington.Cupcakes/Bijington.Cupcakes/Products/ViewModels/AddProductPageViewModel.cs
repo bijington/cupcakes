@@ -28,7 +28,7 @@ public partial class AddProductPageViewModel : ObservableObject
     private string _imagePath = string.Empty;
     
     [RelayCommand]
-    async Task OnTakePhoto()
+    private async Task OnTakePhoto()
     {
         if (_mediaPicker.IsCaptureSupported)
         {
@@ -37,10 +37,10 @@ public partial class AddProductPageViewModel : ObservableObject
             if (photo is not null)
             {
                 // save the file into local storage
-                string localFilePath = Path.Combine(FileSystem.CacheDirectory, photo.FileName);
+                var localFilePath = Path.Combine(FileSystem.CacheDirectory, photo.FileName);
 
-                using Stream sourceStream = await photo.OpenReadAsync();
-                using FileStream localFileStream = File.OpenWrite(localFilePath);
+                await using var sourceStream = await photo.OpenReadAsync();
+                await using var localFileStream = File.OpenWrite(localFilePath);
 
                 await sourceStream.CopyToAsync(localFileStream);
 
@@ -50,7 +50,7 @@ public partial class AddProductPageViewModel : ObservableObject
     }
 
     [RelayCommand]
-    async Task OnSave()
+    private async Task OnSave()
     {
         var product = new Product
         {

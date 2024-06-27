@@ -4,7 +4,7 @@ namespace Bijington.Cupcakes.Orders;
 
 public class ProductOrder
 {
-    public Product Product { get; set; }
+    public Product Product { get; init; }
     
-    public int Quantity { get; set; }
+    public int Quantity { get; init; }
 }

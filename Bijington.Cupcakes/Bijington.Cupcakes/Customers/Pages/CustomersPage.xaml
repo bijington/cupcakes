@@ -32,14 +32,18 @@
             <CollectionView.ItemTemplate>
                 <DataTemplate x:DataType="customers:Customer">
                     <Border StrokeShape="RoundRectangle 25">
-                        <Grid ColumnDefinitions="*,5*"
-                              RowDefinitions="2*,*">
-                            <!-- <Image Source="{Binding Path=ImagePath}"  -->
-                            <!--        HeightRequest="100" /> -->
-                            
+                        <Border.GestureRecognizers>
+                            <TapGestureRecognizer 
+                                Command="{Binding CustomerSelectedCommand, Source={RelativeSource AncestorType={x:Type viewModels:CustomersPageViewModel}}}" 
+                                CommandParameter="{Binding}" />
+                        </Border.GestureRecognizers>
+                        <Grid ColumnDefinitions="*"
+                              RowDefinitions="2*, *">
                             <Label Text="{Binding Path=Name}"
-                                   Grid.Column="1"
                                    FontSize="30"
+                                   Padding="30,0,0,0" />
+                            <Label Text="{Binding Path=PhoneNumber}"
+                                   Grid.Row="1"
                                    Padding="30,0,0,0" />
                         </Grid>
                     </Border>

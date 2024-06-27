@@ -13,23 +13,31 @@ namespace Bijington.Cupcakes.Customers.ViewModels;
 
 public partial class AddCustomerPageViewModel : ObservableObject
 {
-    private readonly ICustomerRepository _customerRepository;
-
     public AddCustomerPageViewModel(
         ICustomerRepository customerRepository)
     {
         _customerRepository = customerRepository;
     }
 
-    [ObservableProperty] 
+    private readonly ICustomerRepository _customerRepository;
+    
+    [ObservableProperty]
+    private string _address;
+    
+    [ObservableProperty]
     private string _customerName;
     
+    [ObservableProperty]
+    private string _phoneNumber;
+    
     [RelayCommand]
-    async Task OnSave()
+    private async Task OnSave()
     {
         var customer = new Customer
         {
-            Name = CustomerName
+            Name = CustomerName,
+            Address = Address,
+            PhoneNumber = PhoneNumber
         };
 
         await _customerRepository.Save(customer);
