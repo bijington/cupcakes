@@ -8,7 +8,7 @@ public class ProductRepository : IProductRepository
     
     public ProductRepository()
     {
-        for (var i = 1; i < 2; i++)
+        for (var i = 1; i < 20; i++)
         { 
             _products.Add(new Product { Id = i, Name = "Rainbow Cake", Price = 12.50M, ImagePath = "https://www.thecomfortofcooking.com/wp-content/uploads/2020/06/Easy_Rainbow_Cake-3-scaled.jpg" });   
         }

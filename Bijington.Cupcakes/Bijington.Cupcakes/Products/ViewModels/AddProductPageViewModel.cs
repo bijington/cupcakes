@@ -1,9 +1,5 @@
-using System.IO;
-using System.Threading.Tasks;
 using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.Input;
-using Microsoft.Maui.Media;
-using Microsoft.Maui.Storage;
 
 namespace Bijington.Cupcakes.Products.ViewModels;
 

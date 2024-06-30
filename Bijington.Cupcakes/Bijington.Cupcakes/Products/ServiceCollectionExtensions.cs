@@ -1,7 +1,6 @@
 using Bijington.Cupcakes.Products.Pages;
 using Bijington.Cupcakes.Products.ViewModels;
 using CommunityToolkit.Maui;
-using Microsoft.Extensions.DependencyInjection;
 
 namespace Bijington.Cupcakes.Products;
 

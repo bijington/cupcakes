@@ -1,4 +1,3 @@
-using System.Numerics;
 using Bijington.Cupcakes.Products;
 using CommunityToolkit.Mvvm.ComponentModel;
 

@@ -5,7 +5,13 @@
              x:Class="Bijington.Cupcakes.Orders.Pages.OrdersPage"
              xmlns:viewModels="clr-namespace:Bijington.Cupcakes.Orders.ViewModels"
              xmlns:orders="clr-namespace:Bijington.Cupcakes.Orders"
+             xmlns:converters="clr-namespace:Bijington.Cupcakes.Converters"
              x:DataType="viewModels:OrdersPageViewModel">
+    
+    <ContentPage.Resources>
+        <converters:DueStatusConverter x:Key="DueStatusConverter" />
+    </ContentPage.Resources>
+    
     <ContentPage.ToolbarItems>
         <ToolbarItem 
             Text="Add item"
@@ -15,7 +21,23 @@
     
     <Grid>
         <CollectionView ItemsSource="{Binding Path=Orders}"
-                        Margin="10">
+                        Margin="10"
+                        IsGrouped="True">
+            
+            <CollectionView.GroupHeaderTemplate>
+                <DataTemplate x:DataType="orders:OrderDate">
+                    <Label Text="{Binding Date}" />
+                </DataTemplate>
+            </CollectionView.GroupHeaderTemplate>
+            
+            <CollectionView.GroupFooterTemplate>
+                <DataTemplate x:DataType="orders:OrderDate">
+                    <HorizontalStackLayout>
+                        <Label Text="{Binding Currency, Source={RelativeSource AncestorType={x:Type viewModels:OrdersPageViewModel}}}" />
+                        <Label Text="{Binding Total}" />
+                    </HorizontalStackLayout>
+                </DataTemplate>
+            </CollectionView.GroupFooterTemplate>
             
             <CollectionView.EmptyView>
                 <Label
@@ -40,7 +62,7 @@
                                    FontSize="30"
                                    Padding="30,0,0,0" />
                             
-                            <Label Text="{Binding Path=Date}"
+                            <Label Text="{Binding Path=Date, Converter={StaticResource DueStatusConverter}}"
                                    Grid.Column="0"
                                    Grid.Row="1"
                                    Padding="30,0,0,0" />

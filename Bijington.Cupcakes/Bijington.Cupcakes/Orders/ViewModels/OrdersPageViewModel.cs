@@ -1,24 +1,26 @@
-using System;
-using System.Collections.Generic;
 using System.Collections.ObjectModel;
-using System.Linq;
-using System.Threading.Tasks;
+using Bijington.Cupcakes.Settings;
 using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.Input;
-using Microsoft.Maui.Controls;
 
 namespace Bijington.Cupcakes.Orders.ViewModels;
 
 public partial class OrdersPageViewModel : ObservableObject
 {
-    private readonly IOrderRepository _orderRepository;
-
-    public OrdersPageViewModel(IOrderRepository orderRepository)
+    public OrdersPageViewModel(IOrderRepository orderRepository, ISettingsRepository settingsRepository)
     {
         _orderRepository = orderRepository;
+        _settingsRepository = settingsRepository;
     }
     
-    public ObservableCollection<Order> Orders { get; } = [];
+    [ObservableProperty]
+    private string _currency;
+    
+    private readonly IOrderRepository _orderRepository;
+    private readonly ISettingsRepository _settingsRepository;
+
+    [ObservableProperty]
+    private IList<OrderDate> _orders;
     
     [RelayCommand]
     private async Task OnAddOrder()
@@ -34,23 +36,23 @@ public partial class OrdersPageViewModel : ObservableObject
         }
     }
     
-    public void OnNavigatedTo()
+    public async void OnNavigatedTo()
     {
-        Task.Run(async () => await LoadOrders());
+        await LoadOrders();
     }
 
     private async Task LoadOrders()
     {
+        Currency = _settingsRepository.Currency;
         var orders = await _orderRepository.GetOrders();
 
-        foreach (var order in orders)
+        var newList = new List<OrderDate>();
+
+        foreach (var grouping in orders.GroupBy(o => o.Date, o => o))
         {
-            if (Orders.Any(p => p.Id == order.Id))
-            {
-                continue;
-            }
-            
-            Orders.Add(order);
+            newList.Add(new OrderDate(DateOnly.FromDateTime(grouping.Key), grouping.ToList()));
         }
+
+        Orders = newList;
     }
 }
