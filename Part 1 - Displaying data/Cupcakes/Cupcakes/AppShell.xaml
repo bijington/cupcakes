@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<Shell
+    x:Class="Cupcakes.AppShell"
+    xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:customersPages="clr-namespace:Cupcakes.Customers.Pages"
+    xmlns:local="clr-namespace:Cupcakes"
+    Shell.FlyoutBehavior="Disabled"
+    Title="Cupcakes">
+
+    <TabBar>
+        <ShellContent
+            Title="Customers"
+            Icon="customers.png"
+            ContentTemplate="{DataTemplate customersPages:CustomersPage}" />
+        
+        <ShellContent
+            Title="Products"
+            Icon="products.png" />
+
+        <ShellContent
+            Title="Orders"
+            Icon="orders.png" />
+        
+        <ShellContent
+            Title="Analytics"
+            Icon="analytics.png" />
+        
+        <ShellContent
+            Title="Settings"
+            Icon="settings.png" />
+    </TabBar>
+
+</Shell>
