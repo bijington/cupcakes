@@ -19,8 +19,8 @@ Beyond that you will be good to go for the workshop!
 The aim of the structure to this content is to _hopefully_ make it easy to jump in at any stage and learn how to apply the concepts in each part/section.
 
 * [Part 0](Part%200%20-%20Overview/readme.md) - Introduction to .NET MAUI
-
-To get started open the `Part 1 - Displaying Data` folder and open `MonkeyFinder.sln`. You can use this throughout the workshop. Each **part** has a **README** file with directions for that part. If you came in late, you can open any of the folders and  there is a starting project for that section.
+* [Part 1](Part%201%0-%20Diplaying%20data/readme.md) - Displaying data
+* [Part 2](Part%202%0-%20Diplaying%20data/readme.md) - MVVM
 
 ## More links and resources
 
@@ -30,4 +30,4 @@ To get started open the `Part 1 - Displaying Data` folder and open `MonkeyFinder
 * [.NET MAUI on GitHub](https://github.com/dotnet/maui)
 * [.NET Beginner Series Videos](https://dot.net/videos)
 
-If you have any questions please reach out to me on Twitter [@JamesMontemagno](https://twitter.com/jamesmontemagno). 
+If you have any questions please reach out to me on Twitter [@Bijington](https://twitter.com/bijington).
