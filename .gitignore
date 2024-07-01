@@ -352,3 +352,4 @@ MigrationBackup/
 # Rider
 
 .idea/
+.DS_Store
