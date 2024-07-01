@@ -78,6 +78,7 @@ The structure of the project should look as follows:
   * <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/regular/folder.svg" width="20" height="20"> Resources
   * <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/regular/file.svg" width="15" height="15"> App.xaml
   * <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/regular/file.svg" width="15" height="15"> AppShell.xaml
+  * <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/regular/file.svg" width="15" height="15"> MainPage.xaml
   * <img src="https://raw.githubusercontent.com/FortAwesome/Font-Awesome/6.x/svgs/regular/file.svg" width="15" height="15"> MauiProgram.cs
 
 ----

@@ -1,27 +1,27 @@
 using System.Collections.Immutable;
+using SQLite;
 
 namespace Bijington.Cupcakes.Customers;
 
 public class CustomerRepository : ICustomerRepository
 {
-    private readonly IList<Customer> _customers = new List<Customer>();
+    private readonly SQLiteAsyncConnection _connection;
     
-    public CustomerRepository()
+    public CustomerRepository(IFileSystem fileSystem)
     {
-        _customers.Add(new Customer { Name = "Shaun" });
+        var dbPath = Path.Combine(fileSystem.AppDataDirectory, "cupcakes_sqlite.db");
+    
+        _connection = new SQLiteAsyncConnection(dbPath);
+        _connection.CreateTableAsync<Customer>();
     }
     
-    public Task<IReadOnlyCollection<Customer>> GetCustomers()
+    public async Task<IReadOnlyCollection<Customer>> GetCustomers()
     {
-        return Task.FromResult<IReadOnlyCollection<Customer>>(_customers.ToImmutableList());
+        return await _connection.Table<Customer>().ToListAsync();
     }
     
     public Task Save(Customer customer)
     {
-        _customers.Add(customer);
-        
-        customer.Id = _customers.Count;
-
-        return Task.CompletedTask;
+        return _connection.InsertAsync(customer);
     }
 }

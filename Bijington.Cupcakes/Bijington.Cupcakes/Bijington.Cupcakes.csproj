@@ -61,47 +61,7 @@
         <PackageReference Include="Microsoft.Maui.Controls" Version="$(MauiVersion)"/>
         <PackageReference Include="Microsoft.Maui.Controls.Compatibility" Version="$(MauiVersion)"/>
         <PackageReference Include="Microsoft.Extensions.Logging.Debug" Version="8.0.0"/>
-    </ItemGroup>
-
-    <ItemGroup>
-      <MauiXaml Update="Customers\Pages\CustomersPage.xaml">
-        <SubType>Designer</SubType>
-      </MauiXaml>
-      <MauiXaml Update="Customers\Pages\AddCustomerPage.xaml">
-        <SubType>Designer</SubType>
-      </MauiXaml>
-      <MauiXaml Update="Customers\Pages\CustomersPage.xaml">
-        <SubType>Designer</SubType>
-      </MauiXaml>
-      <MauiXaml Update="Customers\Pages\AddCustomerPage.xaml">
-        <SubType>Designer</SubType>
-      </MauiXaml>
-      <MauiXaml Update="Analytics\Pages\ReportPage.xaml">
-        <SubType>Designer</SubType>
-      </MauiXaml>
-    </ItemGroup>
-
-    <ItemGroup>
-      <Compile Update="Customers\Pages\CustomersPage.xaml.cs">
-        <DependentUpon>OrdersPage.xaml</DependentUpon>
-        <SubType>Code</SubType>
-      </Compile>
-      <Compile Update="Customers\Pages\OrdersPage.xaml.cs">
-        <DependentUpon>OrdersPage.xaml</DependentUpon>
-        <SubType>Code</SubType>
-      </Compile>
-      <Compile Update="Customers\Pages\AddCustomerPage.xaml.cs">
-        <DependentUpon>AddOrderPage.xaml</DependentUpon>
-        <SubType>Code</SubType>
-      </Compile>
-      <Compile Update="Customers\Pages\AddOrderPage.xaml.cs">
-        <DependentUpon>AddOrderPage.xaml</DependentUpon>
-        <SubType>Code</SubType>
-      </Compile>
-      <Compile Update="Analytics\Pages\ReportPage.xaml.cs">
-        <DependentUpon>ReportPage.xaml</DependentUpon>
-        <SubType>Code</SubType>
-      </Compile>
+        <PackageReference Include="sqlite-net-pcl" Version="1.9.172" />
     </ItemGroup>
 
 </Project>

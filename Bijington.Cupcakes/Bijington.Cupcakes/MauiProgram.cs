@@ -26,6 +26,7 @@ public static class MauiProgram
         builder.Services.AddProducts();
         builder.Services.AddSettings();
 
+        builder.Services.AddSingleton(FileSystem.Current);
         builder.Services.AddSingleton(Geocoding.Default);
         builder.Services.AddSingleton(Map.Default);
         builder.Services.AddSingleton(MediaPicker.Default);

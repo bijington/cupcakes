@@ -1,3 +1,5 @@
+using SQLite;
+
 namespace Bijington.Cupcakes.Customers;
 
 public class Customer
@@ -8,5 +10,6 @@ public class Customer
     
     public string PhoneNumber { get; init; } = string.Empty;
     
+    [PrimaryKey, AutoIncrement]
     public int Id { get; set; }
 }
