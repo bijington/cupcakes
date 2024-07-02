@@ -18,9 +18,9 @@ Beyond that you will be good to go for the workshop!
 
 The aim of the structure to this content is to _hopefully_ make it easy to jump in at any stage and learn how to apply the concepts in each part/section.
 
-* [Part 0](Part%200%20-%20Overview/readme.md) - Introduction to .NET MAUI
-* [Part 1](Part%201%0-%20Diplaying%20data/readme.md) - Displaying data
-* [Part 2](Part%202%0-%20Diplaying%20data/readme.md) - MVVM
+* [Part 0](part-0-overview/readme.md) - Introduction to .NET MAUI
+* [Part 1](part-1-diplaying-data/readme.md) - Displaying data
+* [Part 2](part-2-mvvm/readme.md) - MVVM
 
 ## More links and resources
 

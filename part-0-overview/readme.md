@@ -307,4 +307,4 @@ Alternatively, it can be consumed by referencing its alias:
        FontFamily="OpenSansRegular" />
 ```
 
-Now that you have a basic understanding of the .NET MAUI project, let's start building our app! Head over to [Part 1](../Part%201%20-%20Displaying%20Data/readme.md).
+Now that you have a basic understanding of the .NET MAUI project, let's start building our app! Head over to [Part 1](../part-1-displaying-data/readme.md).

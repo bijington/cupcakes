@@ -339,4 +339,4 @@ It is worth stating that while MVVM is the most common pattern used within .NET 
 * [C# Markup](https://github.com/CommunityToolkit/Maui.Markup)
 * [.NET Community Toolkit](https://github.com/CommunityToolkit/dotnet)
 
-Let's continue and learn about using the MVVM pattern with data binding in [Part 2](../Part%203%20-%20Navigation/readme.md)
+Let's continue and learn about using the MVVM pattern with data binding in [Part 2](../part-3-navigation/readme.md)
