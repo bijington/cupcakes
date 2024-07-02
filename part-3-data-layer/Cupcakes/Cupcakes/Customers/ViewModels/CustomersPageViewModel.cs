@@ -5,15 +5,18 @@ namespace Cupcakes.Customers.ViewModels;
 
 public partial class CustomersPageViewModel : ObservableObject
 {
-    [ObservableProperty]
-    private ObservableCollection<Customer> _customers;
-    
-    public void OnNavigatedTo()
+    public CustomersPageViewModel(CustomerRepository customerRepository)
     {
-        Customers =
-        [
-            new Customer { Name = "Cookie Monster", Address = "1 Sesame Street" },
-            new Customer { Name = "Sherlock Holmes", Address = "221B, Baker Street, London"}
-        ];
+        _customerRepository = customerRepository;
+    }
+    
+    private readonly CustomerRepository _customerRepository;
+    
+    [ObservableProperty]
+    private ObservableCollection<Customer> _customers = [];
+    
+    public async void OnNavigatedTo()
+    {
+        Customers = new ObservableCollection<Customer>(await _customerRepository.GetCustomers());
     }
 }

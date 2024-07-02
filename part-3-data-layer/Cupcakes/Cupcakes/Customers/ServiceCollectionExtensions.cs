@@ -9,5 +9,8 @@ public static class ServiceCollectionExtensions
     {
         serviceCollection.AddTransient<CustomersPage>();
         serviceCollection.AddTransient<CustomersPageViewModel>();
+        
+        serviceCollection.AddSingleton(FileSystem.Current);
+        serviceCollection.AddSingleton<CustomerRepository>();
     }
 }

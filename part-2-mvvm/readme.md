@@ -103,6 +103,8 @@ We first need to add the `CommunityToolkit.Mvvm` package to the project via NuGe
 * Select `CommunityToolkit.Mvvm` result
 * Click install
 
+This package will now be installed and ready for us to use.
+
 Delete all contents in `CustomersPageViewModel.cs` and replace it with the following:
 
 ```csharp
@@ -226,6 +228,8 @@ public static class ServiceCollectionExtensions
     }
 }
 ```
+
+One key detail is the method `AddTransient` this means that for every class/instance that depends on the `CustomersPage` a new instance will be created.
 
 This provides us with the ability to use the `AddCustomers` method in our `MauiProgram` file, so let's do that now:
 

@@ -14,6 +14,7 @@ public static class ServiceCollectionExtensions
         serviceCollection.AddTransientWithShellRoute<AddCustomerPage, AddCustomerPageViewModel>(RouteNames.AddCustomer);
         serviceCollection.AddTransientWithShellRoute<CustomerDetailsPage, CustomerDetailsPageViewModel>(RouteNames.EditCustomer);
 
+        serviceCollection.AddSingleton(FileSystem.Current);
         serviceCollection.AddSingleton<ICustomerRepository, CustomerRepository>();
     }
 }
