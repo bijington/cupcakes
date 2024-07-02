@@ -7,6 +7,12 @@
              x:Class="Cupcakes.Customers.Pages.CustomersPage"
              x:DataType="customerViewModels:CustomersPageViewModel">
     
+    <ContentPage.ToolbarItems>
+        <ToolbarItem 
+            Text="Add"
+            Command="{Binding AddCustomerCommand}" />
+    </ContentPage.ToolbarItems>
+    
     <CollectionView Margin="10" ItemsSource="{Binding Customers}">
             
         <CollectionView.ItemTemplate>

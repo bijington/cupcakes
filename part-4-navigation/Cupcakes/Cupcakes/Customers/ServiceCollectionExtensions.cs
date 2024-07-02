@@ -10,6 +10,10 @@ public static class ServiceCollectionExtensions
         serviceCollection.AddTransient<CustomersPage>();
         serviceCollection.AddTransient<CustomersPageViewModel>();
         
+        serviceCollection.AddTransient<AddCustomerPage>();
+        serviceCollection.AddTransient<AddCustomerPageViewModel>();
+        Routing.RegisterRoute(RouteNames.AddCustomer, typeof(AddCustomerPage));
+        
         serviceCollection.AddSingleton(FileSystem.Current);
         serviceCollection.AddSingleton<CustomerRepository>();
     }

@@ -1,5 +1,6 @@
 using System.Collections.ObjectModel;
 using CommunityToolkit.Mvvm.ComponentModel;
+using CommunityToolkit.Mvvm.Input;
 
 namespace Cupcakes.Customers.ViewModels;
 
@@ -18,5 +19,11 @@ public partial class CustomersPageViewModel : ObservableObject
     public async void OnNavigatedTo()
     {
         Customers = new ObservableCollection<Customer>(await _customerRepository.GetCustomers());
+    }
+    
+    [RelayCommand]
+    private async Task OnAddCustomer()
+    {
+        await Shell.Current.GoToAsync(RouteNames.AddCustomer);
     }
 }

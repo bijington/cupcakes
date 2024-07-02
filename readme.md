@@ -21,6 +21,8 @@ The aim of the structure to this content is to _hopefully_ make it easy to jump 
 * [Part 0](part-0-overview/readme.md) - Introduction to .NET MAUI
 * [Part 1](part-1-diplaying-data/readme.md) - Displaying data
 * [Part 2](part-2-mvvm/readme.md) - MVVM
+* [Part 3](part-3-data-layer/readme.md) - Data layer
+* [Part 4](part-4-navigation/readme.md) - Navigation
 
 ## More links and resources
 
