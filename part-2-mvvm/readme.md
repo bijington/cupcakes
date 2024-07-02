@@ -93,9 +93,15 @@ Notice that we call `OnPropertyChanged` when the value changes. The .NET MAUI bi
 
 ### Simplifying MVVM with .NET Community Toolkit
 
-Now that you have an understanding of how MVVM works, let's look at a way to simplify development. As applications get more complex, more properties and events will be added. This leads to more boilerplate code being added. The .NET Community Toolkit seeks to simplify MVVM with source generators to automatically handle the code that we used to manually had to write. 
+Now that you have an understanding of how MVVM works, let's look at a way to simplify development. As applications get more complex, more properties and events will be added. This leads to more boilerplate code being added. The .NET Community Toolkit seeks to simplify MVVM with source generators to automatically handle the code that we used to manually had to write.
 
-We first need to add the `CommunityToolkit.Mvvm` package to the project via nuget.
+We first need to add the `CommunityToolkit.Mvvm` package to the project via NuGet:
+
+* Right click on the `Cupcakes` project
+* Select Manage NuGet Packages...
+* Type `CommunityToolkit.Mvvm` in the search bar
+* Select `CommunityToolkit.Mvvm` result
+* Click install
 
 Delete all contents in `CustomersPageViewModel.cs` and replace it with the following:
 
@@ -277,14 +283,14 @@ The final step in sourcing the data from our view model is now to create the `Bi
 ```xaml
 <CollectionView Margin="10">
             
-        <CollectionView.ItemsSource>
-            <x:Array Type="{x:Type customers:Customer}">
-                <customers:Customer
-                    Name="Sherlock Holmes"
-                    PhoneNumber="0123456789"
-                    Address="221B Baker Street" />
-            </x:Array>
-        </CollectionView.ItemsSource>
+    <CollectionView.ItemsSource>
+        <x:Array Type="{x:Type customers:Customer}">
+            <customers:Customer
+                Name="Sherlock Holmes"
+                PhoneNumber="0123456789"
+                Address="221B Baker Street" />
+        </x:Array>
+    </CollectionView.ItemsSource>
 ```
 
 down to this:
@@ -339,4 +345,4 @@ It is worth stating that while MVVM is the most common pattern used within .NET 
 * [C# Markup](https://github.com/CommunityToolkit/Maui.Markup)
 * [.NET Community Toolkit](https://github.com/CommunityToolkit/dotnet)
 
-Let's continue and learn about using the MVVM pattern with data binding in [Part 2](../part-3-navigation/readme.md)
+Let's continue and learn about data access in .NET MAUI in [Part 3](../part-3-data-layer/readme.md)
