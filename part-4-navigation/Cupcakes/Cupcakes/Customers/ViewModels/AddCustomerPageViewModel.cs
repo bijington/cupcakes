@@ -14,13 +14,13 @@ public partial class AddCustomerPageViewModel : ObservableObject
     private readonly CustomerRepository _customerRepository;
     
     [ObservableProperty]
-    private string _address;
+    private string _address = string.Empty;
     
     [ObservableProperty, NotifyCanExecuteChangedFor(nameof(SaveCommand))]
-    private string _customerName;
+    private string _customerName = string.Empty;
     
     [ObservableProperty]
-    private string _phoneNumber;
+    private string _phoneNumber = string.Empty;
     
     [RelayCommand(CanExecute = nameof(CanSave))]
     private async Task OnSave()

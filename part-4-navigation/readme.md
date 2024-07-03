@@ -51,13 +51,13 @@ Making full use of the `CommunityToolkit.Mvvm` like we did in part 2.
 
 ```csharp
 [ObservableProperty]
-private string _address;
+private string _address = string.Empty;
 
 [ObservableProperty]
-private string _customerName;
+private string _customerName = string.Empty;
 
 [ObservableProperty]
-private string _phoneNumber;
+private string _phoneNumber = string.Empty;
 ```
 
 #### Add a command to handle the save button click/tap
@@ -162,13 +162,13 @@ public partial class AddCustomerPageViewModel : ObservableObject
     private readonly CustomerRepository _customerRepository;
     
     [ObservableProperty]
-    private string _address;
+    private string _address = string.Empty;
     
     [ObservableProperty, NotifyCanExecuteChangedFor(nameof(SaveCommand))]
-    private string _customerName;
+    private string _customerName = string.Empty;
     
     [ObservableProperty]
-    private string _phoneNumber;
+    private string _phoneNumber = string.Empty;
     
     [RelayCommand(CanExecute = nameof(CanSave))]
     private async Task OnSave()
@@ -306,7 +306,34 @@ We first need to add the `CommunityToolkit.Maui` package to the project via NuGe
 * Select `CommunityToolkit.Maui` result
 * Click install
 
-This package will now be installed and ready for us to use.
+This package will now be installed and ready for us to use although we need to apply a change to our `MauiProgram.cs` file:
+
+```csharp
+var builder = MauiApp.CreateBuilder();
+    builder
+        .UseMauiApp<App>()
+        .ConfigureFonts(fonts =>
+        {
+            fonts.AddFont("OpenSans-Regular.ttf", "OpenSansRegular");
+            fonts.AddFont("OpenSans-Semibold.ttf", "OpenSansSemibold");
+        });
+```
+
+Needs to change to the following:
+
+```csharp
+var builder = MauiApp.CreateBuilder();
+    builder
+        .UseMauiApp<App>()
+        .UseMauiCommunityToolkit()
+        .ConfigureFonts(fonts =>
+        {
+            fonts.AddFont("OpenSans-Regular.ttf", "OpenSansRegular");
+            fonts.AddFont("OpenSans-Semibold.ttf", "OpenSansSemibold");
+        });
+```
+
+Notice the addition of the `.UseMauiCommunityToolkit()` method. Note this is a common pattern that you will see when bringing in libraries to your .NET MAUI applications.
 
 #### Simplified registration
 
