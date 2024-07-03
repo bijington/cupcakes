@@ -23,6 +23,7 @@ The aim of the structure to this content is to _hopefully_ make it easy to jump 
 * [Part 2](part-2-mvvm/readme.md) - MVVM
 * [Part 3](part-3-data-layer/readme.md) - Data layer
 * [Part 4](part-4-navigation/readme.md) - Navigation
+* [Part 5](part-5-platform-features/readme.md) - Platform features
 
 ## More links and resources
 
