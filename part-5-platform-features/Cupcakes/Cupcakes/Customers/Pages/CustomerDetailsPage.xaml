@@ -12,9 +12,14 @@
         
         <Label Text="Address" />
         <Label Text="{Binding Customer.Address}" />
+        <Button Text="Show on map" Command="{Binding ShowMapCommand}" />
 
         <Label Text="Phone Number" />
-        <Label Text="{Binding Customer.PhoneNumber}" />
+        <Label Text="{Binding Customer.PhoneNumber}">
+            <Label.GestureRecognizers>
+                <TapGestureRecognizer Command="{Binding DialPhoneNumberCommand}" />
+            </Label.GestureRecognizers>
+        </Label>
     </VerticalStackLayout>
     
 </ContentPage>

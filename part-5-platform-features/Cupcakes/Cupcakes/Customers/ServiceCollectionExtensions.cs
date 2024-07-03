@@ -16,5 +16,8 @@ public static class ServiceCollectionExtensions
         
         serviceCollection.AddSingleton(FileSystem.Current);
         serviceCollection.AddSingleton<CustomerRepository>();
+        serviceCollection.AddSingleton(Geocoding.Default);
+        serviceCollection.AddSingleton(Map.Default);
+        serviceCollection.AddSingleton(PhoneDialer.Default);
     }
 }
