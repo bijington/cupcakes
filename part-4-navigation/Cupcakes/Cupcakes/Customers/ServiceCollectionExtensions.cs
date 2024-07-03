@@ -1,3 +1,4 @@
+using CommunityToolkit.Maui;
 using Cupcakes.Customers.Pages;
 using Cupcakes.Customers.ViewModels;
 
@@ -10,9 +11,7 @@ public static class ServiceCollectionExtensions
         serviceCollection.AddTransient<CustomersPage>();
         serviceCollection.AddTransient<CustomersPageViewModel>();
         
-        serviceCollection.AddTransient<AddCustomerPage>();
-        serviceCollection.AddTransient<AddCustomerPageViewModel>();
-        Routing.RegisterRoute(RouteNames.AddCustomer, typeof(AddCustomerPage));
+        serviceCollection.AddTransientWithShellRoute<AddCustomerPage, AddCustomerPageViewModel>(RouteNames.AddCustomer);
         
         serviceCollection.AddSingleton(FileSystem.Current);
         serviceCollection.AddSingleton<CustomerRepository>();

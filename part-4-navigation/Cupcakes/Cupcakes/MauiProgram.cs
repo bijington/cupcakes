@@ -1,4 +1,5 @@
-﻿using Cupcakes.Customers;
+﻿using CommunityToolkit.Maui;
+using Cupcakes.Customers;
 using Microsoft.Extensions.Logging;
 
 namespace Cupcakes;
@@ -10,6 +11,7 @@ public static class MauiProgram
         var builder = MauiApp.CreateBuilder();
         builder
             .UseMauiApp<App>()
+            .UseMauiCommunityToolkit()
             .ConfigureFonts(fonts =>
             {
                 fonts.AddFont("OpenSans-Regular.ttf", "OpenSansRegular");
