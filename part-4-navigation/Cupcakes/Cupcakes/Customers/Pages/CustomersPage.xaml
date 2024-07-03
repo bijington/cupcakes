@@ -18,6 +18,12 @@
         <CollectionView.ItemTemplate>
             <DataTemplate x:DataType="customers:Customer">
                 <Border StrokeShape="RoundRectangle 25">
+                    <Border.GestureRecognizers>
+                        <TapGestureRecognizer 
+                            Command="{Binding CustomerSelectedCommand, Source={RelativeSource AncestorType={x:Type customerViewModels:CustomersPageViewModel}}}" 
+                            CommandParameter="{Binding}" />
+                    </Border.GestureRecognizers>
+                    
                     <VerticalStackLayout Padding="30,0,0,0">
                         <Label Text="{Binding Path=Name}" FontSize="30"/>
                         <Label Text="{Binding Path=Address}" />

@@ -7,7 +7,7 @@ In this part we are going to add 2 new pages into our application:
 
 Each option above will take us through a slightly different approach to help us see what might fit future scenarios best.
 
-We saw a little bit of Shell when we added the tabs into our application but we didn't do much with it. In this part we will look to use the URI based navigation to move between pages in our application.
+We saw a little bit of Shell when we added the tabs into our application but we didn't do much with it. In this part we will look to use the [URI based navigation](https://learn.microsoft.com/dotnet/maui/fundamentals/shell/navigation) to move between pages in our application.
 
 ## New customer page
 
@@ -379,7 +379,178 @@ You will also notice that the Save button is disabled initially and only becomes
 
 ## Customer details page
 
-NEED TO REPEAT FOR CUSTOMER DETAILS PAGE
+We are going to perform a very similar set of steps to the [previous section](#new-customer-page) and even the UI will look familiar, we are making a separate page to create a clear distinction between creating data and viewing data. Plus it means that we can get some exposure to some other goodies that .NET MAUI offers.
+
+Let's start by adding our new files:
+
+* Add a new `ContentPage` to the `Customers/Pages` folder and call it `CustomerDetailsPage`
+* Add a new `class` to the `Customers/ViewModels` folder and call it `CustomerDetailsPageViewModel`
+
+We have now created our view and view model pair for the new screen to add a customer. Let's proceed to adding the functionality:
+
+### Add functionality to our `CustomerDetailsPageViewModel`
+
+Let's open the `CustomerDetailsPageViewModel` file and apply the following changes:
+
+#### Add using statements to `CustomerDetailsPageViewModel`
+
+We can add there at the top of the file.
+
+```csharp
+using CommunityToolkit.Mvvm.ComponentModel;
+```
+
+In truth we don't need to add these upfront because the tooling does a good job of providing a quick way to do it but I do like to draw emphasis to where the value is coming from.
+
+#### Add properties to `CustomerDetailsPageViewModel`
+
+Making full use of the `CommunityToolkit.Mvvm` like we did in part 2.
+
+```csharp
+[ObservableProperty]
+private Customer? _customer;
+```
+
+#### Final code for `CustomerDetailsPageViewModel`
+
+The resulting `CustomerDetailsPageViewModel` should look as follows:
+
+```csharp
+using CommunityToolkit.Mvvm.ComponentModel;
+
+namespace Cupcakes.Customers.ViewModels;
+
+[QueryProperty(nameof(Customer), "Customer")]
+public partial class CustomerDetailsPageViewModel : ObservableObject
+{
+    [ObservableProperty]
+    private Customer? _customer;
+}
+```
+
+### Update the `CustomerDetailsPage.xaml` file
+
+We can change the code in our `CustomerDetailsPage.xaml` file. The below structure will result in a vertical layout showing each control in order that they are defined.
+
+```xaml
+<?xml version="1.0" encoding="utf-8"?>
+
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:viewModels="clr-namespace:Cupcakes.Customers.ViewModels"
+             x:Class="Cupcakes.Customers.Pages.CustomerDetailsPage"
+             x:DataType="viewModels:CustomerDetailsPageViewModel">
+    
+    <VerticalStackLayout Margin="20" Spacing="10">
+        <Label Text="Customer Name" />
+        <Label Text="{Binding Customer.Name}" />
+        
+        <Label Text="Address" />
+        <Label Text="{Binding Customer.Address}" />
+
+        <Label Text="Phone Number" />
+        <Label Text="{Binding Customer.PhoneNumber}" />
+    </VerticalStackLayout>
+    
+</ContentPage>
+```
+
+We should notice the following things:
+
+* We are not setting the `Shell.PresentationMode` which means it will use the default of `Animated` and therefore it will be added to the navigation stack and present a back button
+* We are binding to a sub property of the `Customer` class
+* If the `Customer` property is `null` then we won't actually experience any crashes or exceptions unlike with C#. That being said we can add in a `TargetNullValue` in order to handle this scenario and present a different value.
+
+### Update the `CustomerDetailsPage.xaml.cs` file
+
+```csharp
+using Cupcakes.Customers.ViewModels;
+
+namespace Cupcakes.Customers.Pages;
+
+public partial class CustomerDetailsPage : ContentPage
+{
+    public CustomerDetailsPage(CustomerDetailsPageViewModel customerDetailsPageViewModel)
+    {
+        InitializeComponent();
+        BindingContext = customerDetailsPageViewModel;
+    }
+}
+```
+
+The above should look pretty familiar to our `AddCustomer` class.
+
+## Showing the customer details page
+
+There are a number of steps that need to be followed in order to show our new page:
+
+### Registering a route to `CustomerDetailsPage`
+
+We can add the following line into our `RouteNames` class file under the `Customers` folder:
+
+```csharp
+public const string EditCustomer = nameof(CustomerDetailsPage);
+```
+
+Leaving us with a file that will look as follows:
+
+```csharp
+using Cupcakes.Customers.Pages;
+
+namespace Cupcakes;
+
+public partial class RouteNames
+{
+    public const string AddCustomer = nameof(AddCustomerPage);
+
+    public const string CustomerDetails = nameof(CustomerDetailsPage);
+}
+```
+
+We can now register the route and pages just as we did for the `AddCustomerPage` above, inside the `AddCustomers` method in our `ServiceCollectionExtensions` class we can add the following registration:
+
+```csharp
+serviceCollection.AddTransientWithShellRoute<CustomerDetailsPage, CustomerDetailsPageViewModel>(RouteNames.CustomerDetails);
+```
+
+### Showing our new page
+
+There are a number of ways that we could achieve this, for example we could handle the selection changing from the `CollectionView` but we don't really want to show selection, in fact we just want the user to tap or click on an item in the list to view the details, for this we can handle this sort of interaction with a `GestureRecognizer` and specifically the `TapGestureRecognizer`.
+
+If we open the `CustomersPage.xaml` file and add the following inside the `<Border>` element:
+
+```xaml
+<Border.GestureRecognizers>
+    <TapGestureRecognizer 
+        Command="{Binding CustomerSelectedCommand, Source={RelativeSource AncestorType={x:Type customerViewModels:CustomersPageViewModel}}}" 
+        CommandParameter="{Binding}" />
+</Border.GestureRecognizers>
+```
+
+We covered in [Part 2 - MVVM](../part-2-mvvm/readme.md) that bindings we create are against the `BindingContext` this is a useful default approach but sometimes we need to bind to something outside of the current context. In our example we want to handle the tap interaction on each individual item (`Customer`) from our list (`CollectionView`) but we want to handle the interaction in our `CustomersPageViewModel`. To do this we can make use of [Relative bindings](https://learn.microsoft.com/dotnet/maui/fundamentals/data-binding/relative-bindings#bind-to-an-ancestor).
+
+There are a number of options when binding to something relative to the current context but the approach that we are going to use is the `AncestorType` option. This involves the binding engine walking up the visual tree until it can find the type that we have provided, in our case this is the `CustomersPageViewModel`.
+
+Additionally we are setting the `CommandParameter` and just using the value of `{Binding}`, this means two things:
+
+* When the `CustomerSelectedCommand` is executed it will be passed in a value
+* That value will be the binding context of the `Border` that the `TapGestureRecognizer` is attached to, which is the `Customer`
+
+### Adding the `OnCustomerSelected` method
+
+Inside our `CustomersPageViewModel` we can add the following method:
+
+```csharp
+[RelayCommand]
+private async Task OnCustomerSelected(Customer customer)
+{
+    await Shell.Current.GoToAsync(
+        RouteNames.CustomerDetails,
+        new Dictionary<string, object> { ["Customer"] = customer });
+}
+```
+
+This now requests that Shell will navigate to a URI and that URI we pass in is our common RouteName that we created earlier, we also pass in the dictionary which results in parameters passed into the query string, this then allows us to receive that value in the view or view model when Shell navigates to our page. How the value gets mapped is tied into this line ```csharp[QueryProperty(nameof(Customer), "Customer")]` ``that we discussed earlier.
 
 ## Finishing up
 

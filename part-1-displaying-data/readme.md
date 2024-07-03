@@ -23,7 +23,7 @@ Grab the files from the above folder and place them under the `Cupcakes/Resource
 
 ## Introducing Tabs
 
- The first build issue that we will see is in the app Shell.Zamo file the way to fix this will be to introduce tabs to create our new layout and then delete while deleting the main page reference we will nail reference our customers page
+Our application is built using [Shell](https://learn.microsoft.com/dotnet/maui/fundamentals/shell/create) and for the next part we will be adding [Tabs](https://learn.microsoft.com/dotnet/maui/fundamentals/shell/tabs)
 
 Delete the following entry inside `AppShell.xaml`
 

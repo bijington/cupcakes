@@ -26,4 +26,12 @@ public partial class CustomersPageViewModel : ObservableObject
     {
         await Shell.Current.GoToAsync(RouteNames.AddCustomer);
     }
+    
+    [RelayCommand]
+    private async Task OnCustomerSelected(Customer customer)
+    {
+        await Shell.Current.GoToAsync(
+            RouteNames.CustomerDetails,
+            new Dictionary<string, object> { ["Customer"] = customer });
+    }
 }
