@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:viewModels="clr-namespace:Cupcakes.Customers.ViewModels"
+             x:Class="Cupcakes.Customers.Pages.AddCustomerPage"
+             Shell.PresentationMode="ModalAnimated"
+             x:DataType="viewModels:AddCustomerPageViewModel">
+    
+    <VerticalStackLayout Margin="20" Spacing="10">
+        <Label Text="Customer Name" />
+        <Entry Text="{Binding CustomerName}" />
+        
+        <Label Text="Address" />
+        <Editor Text="{Binding Address}" />
+        
+        <Label Text="Phone Number" />
+        <Entry Text="{Binding PhoneNumber}" />
+        
+        <Button Text="Save" Command="{Binding SaveCommand}" />
+    </VerticalStackLayout>
+    
+</ContentPage>
