@@ -2,6 +2,8 @@
 
 In this part we will be adding the first page into our application and making it show some data.
 
+![sketch of customer tab](./customer-tab.jpg)
+
 ## Setup
 
 We have a few steps to follow but one key detail to highlight is that we will be creating a top-level folder for each part of our application (e.g. Customers, Products, etc.).
@@ -108,6 +110,14 @@ public class Customer
 ```
 
 ## Displaying our data
+
+![sketch of a customer item](./customer-item.jpg)
+
+Deciding on how to layout out items can come down what we want to display and how well it will perform.
+
+Keep it simple. A good rule of thumb is, if the XAML looks short and succinct then the visual representation is likely simple.
+
+![sketch of an alternative customer item](./customer-item-alternative.jpg)
 
 ```xaml
 <CollectionView Margin="10">

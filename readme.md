@@ -1,8 +1,12 @@
 # .NET MAUI - Workshop
 
-The purpose of this workshop is to develop a small cross-platform app using .NET MAUI together. Using an end-to-end example, we will learn how to build simple screens with .NET MAUI, display data in lists, retrieve data from external sources and make full use of the framework to keep our codebase simple.
+The purpose of this workshop is to develop a small cross-platform app using .NET MAUI. Using an end-to-end example, we will learn how to build simple screens with .NET MAUI, display data in lists, store and retrieve data, and make full use of the framework to keep our codebase simple.
 
 This workshop takes inspiration from the [.NET MAUI Workshop](https://github.com/dotnet-presentations/dotnet-maui-workshop).
+
+My wife is a baker and I have been thinking about building something to help her baking business therefore the end result of the workshop will be to create an application for just that. It will look something like:
+
+![example video of application](./example.mp4)
 
 ## Setup Guide
 
@@ -27,6 +31,7 @@ The aim of the structure to this content is to _hopefully_ make it easy to jump 
 
 ## More links and resources
 
+* [.NET MAUI Workshop](https://github.com/dotnet-presentations/dotnet-maui-workshop)
 * [.NET MAUI Website](https://dot.net/maui)
 * [.NET MAUI on Microsoft Learn](https://docs.microsoft.com/learn/paths/build-apps-with-dotnet-maui/)
 * [.NET MAUI Documentation](https://docs.microsoft.com/dotnet/maui)

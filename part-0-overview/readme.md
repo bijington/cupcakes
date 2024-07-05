@@ -1,6 +1,6 @@
 # Part 0 - Overview
 
-Let's start by getting a basic overview of what .NET MAUI and why we would consider using it
+Let's start by getting a basic overview of what .NET MAUI and why we would consider using it.
 
 ## What is .NET MAUI?
 
@@ -20,6 +20,8 @@ This evolution brings some much needed benefits from finally being a first class
 
 ----
 
+## How .NET MAUI supports each platform
+
 We mentioned how .NET MAUI supports the multiple platforms so let’s take a quick look at how this is achieved.
 
 ![alt text](maui-compilation.png)
@@ -30,7 +32,14 @@ Taking the example of compiling our application we can make the following statem
 
 ----
 
-Mention different architectures
+## Open architecture
+
+.NET MAUI documentation and samples will typically show off the Model View ViewModel (MVVM) pattern and bindings however, it is important to know that we are not constrained to only using this pattern. We can apply other patterns such as MVU if that is a better fit for our teams knowledge/experience, while Microsoft doesn't provide functionality that makes life easier here there are some great community based packages that do:
+
+* [Reactive](https://www.reactiveui.net)
+* [Comet](https://github.com/comet)
+* [MVU](https://github.com/adospace/reactorui-maui)
+* [C# Markup](https://github.com/CommunityToolkit/Maui.Markup)
 
 ----
 
@@ -52,7 +61,7 @@ Open a terminal application of your choice, `cd` to the location that you wish t
 dotnet new maui --name Cupcakes
 ```
 
-Note that this option won't create an SLN file which is mentioned below, you can just open the csproj file in the IDE of your choosing instead.
+> Note that this option won't create an SLN file which is mentioned below, you can just open the csproj file in the IDE of your choosing instead.
 
 ----
 
